@@ -55,7 +55,7 @@ class Db
         # Si le tableau est vide, on ne rentre pas dans le while
 		//var_dump($ps->fetch());
         while ($row = $ps->fetch()) {
-            $tableau[] = new Livre($row[0],$row[1],$row[2]);
+            $tableau[] = new Livre($row[2],$row[0],$row[1]);
         }
         # Pour debug : affichage du tableau à renvoyer
         # var_dump($tableau);
