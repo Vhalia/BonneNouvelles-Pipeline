@@ -8,9 +8,9 @@ class Db
     {
         try {
             //$this->_db = new PDO('mysql:host=localhost;dbname=bdbn;charset=utf8', 'root', '');
-	    $this->_db = parse_url(getenv("DATABASE_URL"));
-	    $pdo = new PDO("pgsql:" . sprintf("host=%s;port=%s;user=%s;password=%s;dbname=%s",$this->_db["host"],$this->_db["port"],$this->_db["user"],$this->_db["pass"],
-		ltrim($this->_db["path"], "/")));
+	    $env = parse_url(getenv("DATABASE_URL"));
+	    $this->_db = new PDO("pgsql:" . sprintf("host=%s;port=%s;user=%s;password=%s;dbname=%s",$env["host"],$env["port"],$env["user"],$env["pass"],
+		ltrim($env["path"], "/")));
             $this->_db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         } 
 		catch (PDOException $e) {
